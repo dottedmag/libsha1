@@ -45,9 +45,8 @@ extern "C" {
 #if defined(HAVE_STDINT_H)
 #  include <stdint.h>
 #endif
-      
-#ifndef RETURN_VALUES
-#  define RETURN_VALUES
+
+#if defined(_WIN32)
 #  if defined( DLL_EXPORT )
 #    if defined( _MSC_VER ) || defined ( __INTEL_COMPILER )
 #      define VOID_RETURN    __declspec( dllexport ) void __stdcall
@@ -68,13 +67,15 @@ extern "C" {
 #    else
 #      error Use of the DLL is only available on the Microsoft, Intel and GCC compilers
 #    endif
-#  elif defined( __WATCOMC__ )
-#    define VOID_RETURN  void __cdecl
-#    define INT_RETURN   int  __cdecl
-#  else
-#    define VOID_RETURN  void
-#    define INT_RETURN   int
 #  endif
+#endif
+#if defined( __WATCOMC__ )
+#  define VOID_RETURN  void __cdecl
+#  define INT_RETURN   int  __cdecl
+#endif
+#if !defined(VOID_RETURN)
+#  define VOID_RETURN  void
+#  define INT_RETURN   int
 #endif
 
 /*  These defines are used to declare buffers in a way that allows
