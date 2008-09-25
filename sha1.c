@@ -67,7 +67,7 @@ extern "C"
 
 #if defined(SWAP_BYTES)
 #define bsw_32(p,n) \
-    { int _i = (n); while(_i--) ((uint_32t*)p)[_i] = bswap_32(((uint_32t*)p)[_i]); }
+    { int _i = (n); while(_i--) ((uint32_t*)p)[_i] = bswap_32(((uint32_t*)p)[_i]); }
 #else
 #define bsw_32(p,n)
 #endif
@@ -114,13 +114,13 @@ extern "C"
     one_cycle(v, 1,2,3,4,0, f,k,hf(i+4))
 
 VOID_RETURN sha1_compile(sha1_ctx ctx[1])
-{   uint_32t    *w = ctx->wbuf;
+{   uint32_t    *w = ctx->wbuf;
 
 #ifdef ARRAY
-    uint_32t    v[5];
-    memcpy(v, ctx->hash, 5 * sizeof(uint_32t));
+    uint32_t    v[5];
+    memcpy(v, ctx->hash, 5 * sizeof(uint32_t));
 #else
-    uint_32t    v0, v1, v2, v3, v4;
+    uint32_t    v0, v1, v2, v3, v4;
     v0 = ctx->hash[0]; v1 = ctx->hash[1];
     v2 = ctx->hash[2]; v3 = ctx->hash[3];
     v4 = ctx->hash[4];
@@ -183,7 +183,7 @@ VOID_RETURN sha1_begin(sha1_ctx ctx[1])
 /* call the hash_compile function as required.              */
 
 VOID_RETURN sha1_hash(const unsigned char data[], unsigned long len, sha1_ctx ctx[1])
-{   uint_32t pos = (uint_32t)(ctx->count[0] & SHA1_MASK),
+{   uint32_t pos = (uint32_t)(ctx->count[0] & SHA1_MASK),
             space = SHA1_BLOCK_SIZE - pos;
     const unsigned char *sp = data;
 
@@ -204,7 +204,7 @@ VOID_RETURN sha1_hash(const unsigned char data[], unsigned long len, sha1_ctx ct
 /* SHA1 final padding and digest calculation  */
 
 VOID_RETURN sha1_end(unsigned char hval[], sha1_ctx ctx[1])
-{   uint_32t    i = (uint_32t)(ctx->count[0] & SHA1_MASK);
+{   uint32_t    i = (uint32_t)(ctx->count[0] & SHA1_MASK);
 
     /* put bytes in the buffer in an order in which references to   */
     /* 32-bit words will put bytes with lower addresses into the    */

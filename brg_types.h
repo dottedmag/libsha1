@@ -26,17 +26,6 @@
  This software is provided 'as is' with no explicit or implied warranties
  in respect of its properties, including, but not limited to, correctness
  and/or fitness for purpose.
- ---------------------------------------------------------------------------
- Issue 09/09/2006
-
- The unsigned integer types defined here are of the form uint_<nn>t where
- <nn> is the length of the type; for example, the unsigned 32-bit type is
- 'uint_32t'.  These are NOT the same as the 'C99 integer types' that are
- defined in the inttypes.h and stdint.h headers since attempts to use these
- types have shown that support for them is still highly variable.  However,
- since the latter are of the form uint<nn>_t, a regular expression search
- and replace (in VC++ search on 'uint_{:z}t' and replace with 'uint\1_t')
- can be used to convert the types used here to the C99 standard types.
 */
 
 #ifndef BRG_TYPES_H
@@ -57,11 +46,6 @@ extern "C" {
 #  include <stdint.h>
 #endif
       
-typedef uint8_t uint_8t;
-typedef uint16_t uint_16t;
-typedef uint32_t uint_32t;
-typedef uint64_t uint_64t;
-
 #ifndef RETURN_VALUES
 #  define RETURN_VALUES
 #  if defined( DLL_EXPORT )
