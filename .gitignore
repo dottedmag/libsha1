@@ -1,4 +1,4 @@
-Makefile.am
+Makefile.in
 aclocal.m4
 autom4te.cache
 config.guess
@@ -8,3 +8,10 @@ depcomp
 install-sh
 ltmain.sh
 missing
+.deps
+Makefile
+libtool
+stamp-h1
+config.log
+config.h
+config.status
