@@ -11,6 +11,8 @@ AC_PROG_LIBTOOL
 AC_HEADER_STDC
 AC_CHECK_HEADERS([limits.h stdlib.h string.h])
 
+AC_C_BIGENDIAN
+
 AC_C_CONST
 
 AC_CONFIG_FILES([Makefile])
