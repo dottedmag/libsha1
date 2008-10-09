@@ -36,36 +36,20 @@
 #include <string.h>     /* for memcpy() etc.        */
 
 #include "sha1.h"
-#include "brg_endian.h"
 
 #if defined(__cplusplus)
 extern "C"
 {
 #endif
 
-#if defined( _MSC_VER ) && ( _MSC_VER > 800 )
-#pragma intrinsic(memcpy)
-#endif
+#define SHA1_BLOCK_SIZE  64
 
-#if 0 && defined(_MSC_VER)
-#define rotl32  _lrotl
-#define rotr32  _lrotr
-#else
 #define rotl32(x,n)   (((x) << n) | ((x) >> (32 - n)))
 #define rotr32(x,n)   (((x) >> n) | ((x) << (32 - n)))
-#endif
 
-#if !defined(bswap_32)
 #define bswap_32(x) ((rotr32((x), 24) & 0x00ff00ff) | (rotr32((x), 8) & 0xff00ff00))
-#endif
 
 #if (PLATFORM_BYTE_ORDER == IS_LITTLE_ENDIAN)
-#define SWAP_BYTES
-#else
-#undef  SWAP_BYTES
-#endif
-
-#if defined(SWAP_BYTES)
 #define bsw_32(p,n) \
     { int _i = (n); while(_i--) ((uint32_t*)p)[_i] = bswap_32(((uint32_t*)p)[_i]); }
 #else
@@ -113,7 +97,7 @@ extern "C"
     one_cycle(v, 2,3,4,0,1, f,k,hf(i+3));   \
     one_cycle(v, 1,2,3,4,0, f,k,hf(i+4))
 
-VOID_RETURN sha1_compile(sha1_ctx ctx[1])
+static void sha1_compile(sha1_ctx ctx[1])
 {   uint32_t    *w = ctx->wbuf;
 
 #ifdef ARRAY
@@ -169,7 +153,7 @@ VOID_RETURN sha1_compile(sha1_ctx ctx[1])
 #endif
 }
 
-VOID_RETURN sha1_begin(sha1_ctx ctx[1])
+void sha1_begin(sha1_ctx ctx[1])
 {
     ctx->count[0] = ctx->count[1] = 0;
     ctx->hash[0] = 0x67452301;
@@ -182,7 +166,7 @@ VOID_RETURN sha1_begin(sha1_ctx ctx[1])
 /* SHA1 hash data in an array of bytes into hash buffer and */
 /* call the hash_compile function as required.              */
 
-VOID_RETURN sha1_hash(const unsigned char data[], unsigned long len, sha1_ctx ctx[1])
+void sha1_hash(const unsigned char data[], unsigned long len, sha1_ctx ctx[1])
 {   uint32_t pos = (uint32_t)(ctx->count[0] & SHA1_MASK),
             space = SHA1_BLOCK_SIZE - pos;
     const unsigned char *sp = data;
@@ -203,7 +187,7 @@ VOID_RETURN sha1_hash(const unsigned char data[], unsigned long len, sha1_ctx ct
 
 /* SHA1 final padding and digest calculation  */
 
-VOID_RETURN sha1_end(unsigned char hval[], sha1_ctx ctx[1])
+void sha1_end(unsigned char hval[], sha1_ctx ctx[1])
 {   uint32_t    i = (uint32_t)(ctx->count[0] & SHA1_MASK);
 
     /* put bytes in the buffer in an order in which references to   */
@@ -247,7 +231,7 @@ VOID_RETURN sha1_end(unsigned char hval[], sha1_ctx ctx[1])
         hval[i] = (unsigned char)(ctx->hash[i >> 2] >> (8 * (~i & 3)));
 }
 
-VOID_RETURN sha1(unsigned char hval[], const unsigned char data[], unsigned long len)
+void sha1(unsigned char hval[], const unsigned char data[], unsigned long len)
 {   sha1_ctx    cx[1];
 
     sha1_begin(cx); sha1_hash(data, len, cx); sha1_end(hval, cx);
