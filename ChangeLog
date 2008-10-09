@@ -1,3 +1,9 @@
+* 0.2 (10.10.2008)
+
+- Removed brg_* headers and cleaned up platform-dependent code.
+- Added small testsuite.
+- Fixed line endings.
+
 * 0.1 (25.09.2008)
 
 Initial version
