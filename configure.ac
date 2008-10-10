@@ -1,5 +1,5 @@
 AC_PREREQ(2.61)
-AC_INIT(libsha1, 0.1, libsha1@googlegroups.com)
+AC_INIT(libsha1, 0.2, libsha1@googlegroups.com)
 AM_INIT_AUTOMAKE
 
 AC_CONFIG_SRCDIR([sha1.c])
