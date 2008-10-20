@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "sha1.h"
+#include "libsha1.h"
 
 static void print_hex(const char* data, size_t size)
 {

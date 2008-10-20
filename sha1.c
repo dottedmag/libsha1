@@ -35,7 +35,7 @@
 
 #include <string.h>     /* for memcpy() etc.        */
 
-#include "sha1.h"
+#include "libsha1.h"
 
 #if defined(__cplusplus)
 extern "C"
