@@ -14,5 +14,5 @@ AC_C_BIGENDIAN
 
 AC_TYPE_UINT32_T
 
-AC_CONFIG_FILES([Makefile])
-AC_OUTPUT
+AC_OUTPUT([Makefile
+           libsha1.pc])
