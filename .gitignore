@@ -22,3 +22,6 @@ sha1.lo
 sha1.o
 test
 test.o
+config.h.in
+libsha1.pc
+libsha1-*.tar.gz
