@@ -1,3 +1,8 @@
+* 0.3 (??.??.????)
+
+- Added autogen.sh.
+- Added libsha1.pc.
+
 * 0.2 (20.10.2008)
 
 - Removed brg_* headers and cleaned up platform-dependent code.
