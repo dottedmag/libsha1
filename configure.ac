@@ -3,7 +3,6 @@ AC_INIT(libsha1, 0.2.99, libsha1@googlegroups.com)
 AM_INIT_AUTOMAKE
 
 AC_CONFIG_SRCDIR([sha1.c])
-AC_CONFIG_HEADER([config.h])
 
 AC_PROG_CC
 AC_PROG_LIBTOOL
