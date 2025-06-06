@@ -7,4 +7,9 @@ SHA1 implementations (OpenSSL, Mozilla NSS) are not needed.
 = Contacts =
 
 Web site: http://github.com/dottedmag/libsha1
-Mailing list: http://lists.dottedmag.net/mailman/listinfo/libsha1
+
+= Legal =
+
+This is a hobbyist project.
+
+Please reach us at mailto:ce@dottedmag.net if you need help with CE mark.
