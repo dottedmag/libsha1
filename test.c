@@ -11,7 +11,7 @@ static void print_hex(const char* data, size_t size)
         printf("%x%x", ((unsigned char)data[i])/16, ((unsigned char)data[i])%16);
 }
 
-static num_test;
+static int num_test;
 
 static int do_test(const char* data, size_t size, const char* expected_dgst)
 {
